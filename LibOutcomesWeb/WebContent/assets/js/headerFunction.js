@@ -25,6 +25,7 @@ $(document).ready(function() {
 
 	var $loginMenu = $("#menu_login");
 	var $loginButton = $("#login_button");
+	var $logoutButton = $("#menu_logout");
 	
 	$loginMenu.on('click', function() {
 		if ( $("#login_dialog").hasClass("dialog_on") ) {
@@ -40,8 +41,20 @@ $(document).ready(function() {
 		var $loginEmail = $("#login_email").val();
 		var $loginPassword = $("#login_password").val();
 		
-		alert($loginEmail + " " + $loginPassword);
+		$.post("LoginCheck", {
+			"login_email": $loginEmail,
+			"login_password": $loginPassword
+		}, function(success) {
+			if (success.indexOf("TRUE") > -1) {
+				location.reload();
+			} else {
+				alert("이메일 또는 비밀번호가 틀렸습니다.\n확인해주세요");
+			}
+		});
 	});
 	
-
+	$logoutButton.on('click', function() {
+		location.href="Logout";
+	});
+	
 });

@@ -46,8 +46,17 @@
 								</ul>
 							</div>
 						</li><li style="position:relative;">
+						<%
+							if (null == (String) session.getAttribute("liboutcomes_login")) {
+						%>
 							<button id="menu_login" class="btn btn-blue">로그인</button>
-							<button id="menu_logout" class="btn btn-red none">로그아웃</button>
+						<%
+							} else {
+						%>
+							<button id="menu_logout" class="btn btn-red">로그아웃</button>
+						<%
+							}
+						%>
 							<div id="login_dialog">
 								<div class="form-container">
 									<input class="form-default" type="text" id="login_email" placeholder="E-MAIL"/>

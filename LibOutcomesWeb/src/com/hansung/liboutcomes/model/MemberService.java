@@ -2,10 +2,10 @@ package com.hansung.liboutcomes.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.hansung.liboutcomes.utils.LibDBConnector;
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 
 public class MemberService {
 
@@ -22,14 +22,19 @@ public class MemberService {
 	
 	public int loginCheck(String email, String password) {
 
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
+		System.out.println(email + " " + password);
 		
 		int size = 0;
 		
 		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("");
+			pstmt = (PreparedStatement) conn.prepareStatement("select * from member where email = ? and password = ?");
+			pstmt.setString(1, email);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			
 			rs.last();
 			size = rs.getRow();
 			rs.beforeFirst();

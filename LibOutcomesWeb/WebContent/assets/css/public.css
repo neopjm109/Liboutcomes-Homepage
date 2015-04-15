@@ -75,7 +75,8 @@ a {
 	background-color:black;
 	color:white;
 
-	height:71px
+	height:75px;
+	overflow:visible;
 }
 
 .btn {
@@ -144,7 +145,7 @@ a {
 
 #logo span {
 	display:inline-block;
-	margin-top:5px;
+	margin-top:7px;
 	width:200px;
 }
 
@@ -168,7 +169,7 @@ a {
 	z-index:11;
 	
 	width:200%;
-	top:52px;
+	top:54px;
 	right:0px;
 	
 	height:0px;
@@ -187,7 +188,7 @@ a {
 /* 한 단계 더 들어가서 블럭 지정 & 링크 폰트 설정 *****************/
 #menu > ul > li > span > a {
 	display:block;
-	padding:25px 0px;
+	padding:27px 0px;
 	text-decoration:none;
 	color:white;
 }
