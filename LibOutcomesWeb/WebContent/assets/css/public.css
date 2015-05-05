@@ -3,16 +3,14 @@
 */
 
 /*
-*		영어폰트
+*		영문폰트
 */
 
-/*		로고	*/
 @font-face {
 	font-family:"LeagueGothic";
 	src:url("../fonts/LeagueGothic-Regular.otf");
 }
 
-/*		메뉴	*/
 @font-face {
 	font-family:"Mentone";
 	src:url("../fonts/mentone-semibol.otf");
@@ -22,7 +20,6 @@
 *		한글폰트
 */
 
-/*		맑은 고딕	*/
 @font-face {
 	font-family:"Malgun";
 	src:url("../fonts/malgun.ttf");
@@ -44,16 +41,6 @@ body {
 	padding-top:70px;
 }
 
-ul {
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-
-ul li {
-	display:inline-block;
-}
-
 a {
 	color:black;
 	text-decoration:none;
@@ -61,6 +48,15 @@ a {
 
 .white {
 	color:white !important;
+}
+
+.col-centered {
+	float:none;
+	margin:0 auto;
+}
+
+.col-no-padding {
+	padding:0;
 }
 
 @media (min-width:768px) {

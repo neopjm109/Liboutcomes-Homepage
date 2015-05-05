@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
-	<div class="contents">
+<div class="contents">
 
-		<div id="main_contents" class="row">
+	<div class="container">
 <%
 
 	ResultSet rs = (ResultSet) request.getAttribute("manual_list");
@@ -18,7 +18,6 @@
 	}
 
 %>
-		</div>
 	</div>
 
 </div>
