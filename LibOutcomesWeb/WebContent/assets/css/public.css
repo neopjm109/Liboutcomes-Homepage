@@ -39,6 +39,11 @@ html, body {
 	width:100%;
 }
 
+
+body {
+	padding-top:70px;
+}
+
 ul {
 	list-style:none;
 	margin:0;
@@ -54,174 +59,13 @@ a {
 	text-decoration:none;
 }
 
-/*
-*		CLASS
-*/
-
-.row {
-	margin:0 auto;
-	width:990px;
+.white {
+	color:white !important;
 }
 
-.row-100 {
-	width:100%;
-}
+@media (min-width:768px) {
 
-.none {
-	display:none;
-}
-
-.header {
-	background-color:black;
-	color:white;
-
-	height:75px;
-	overflow:visible;
-}
-
-.btn {
-	padding:10px 15px;
-	background-color:#eee;
-	
-	border:1px solid #ccc;
-	border-radius:3px;
-	
-	cursor:pointer;
-}
-
-.btn:hover {
-	background-color:#ccc;
-}
-
-.btn-blue {
-	background-color:#5ca3e9;
-	border:1px solid #1f80e0;
-	
-	color:white;
-}
-
-.btn-blue:hover {
-	background-color:#1f80e0;
-}
-
-.btn-red {
-	background-color:#ff4646;
-	border:1px solid #ff1212;
-	
-	color:white;
-}
-
-.btn-red:hover {
-	background-color:#ff1212;
-}
-
-.form-container > input {
-	margin-bottom:10px;
-}
-
-.form-default {
-	display:block;
-	width:100%;
-	padding:10px;
-	border:1px solid #ddd;
-	border-radius:3px;
-	box-sizing:border-box;
-}
-
-/*
-*		Header
-*/
-
-#header > div{
-
-	vertical-align: middle;
-}
-
-#logo {
-	float:left;
-	font-size:50px;
-	font-family:'LeagueGothic', Sans-serif;
-}
-
-#logo span {
-	display:inline-block;
-	margin-top:7px;
-	width:200px;
-}
-
-#menu {
-	float:right;
-	padding-left:30px;
-	width:550px;
-}
-
-#menu > ul > li {
-	width:25%;
-	text-align:center;
-
-	font-family:'Malgun', Sans-serif;
-	cursor:pointer;
-}
-
-#login_dialog {
-	color:black;
-	position:absolute;
-	z-index:11;
-	
-	width:200%;
-	top:54px;
-	right:0px;
-	
-	height:0px;
-	background-color:white;
-	
-	border-radius:0px 0px 5px 5px;
-	
-	cursor:default;
-	overflow:hidden;
-}
-
-#login_dialog > div {
-	padding:10px;
-}
-
-/* 한 단계 더 들어가서 블럭 지정 & 링크 폰트 설정 *****************/
-#menu > ul > li > span > a {
-	display:block;
-	padding:27px 0px;
-	text-decoration:none;
-	color:white;
-}
-
-#menu > ul > li:hover:not(:last-of-type) {
-	background-color:rgba(255, 255, 255, 0.3);
-}
-
-.popup_menu_parent {
-	position:relative;
-}
-
-.popup_menu {
-	display:none;
-	position:absolute;
-	z-index:1001;
-	width:100%;
-}
-
-.popup_menu li {
-	display:block;
-	background-color:#d8d8d8;
-	margin:2px 0px;
-	padding:1em;
-}
-
-/* 마우스 가져다 댈 경우 색 변화 *****************/
-.popup_menu li:hover { 
-	background-color:#888;
-}
-
-/* 링크 폰트 설정 *****************/
-.popup_menu li > a {
-	text-decoration:none;
-	color:black;
+	body {
+		padding-top:100px;
+	}
 }
