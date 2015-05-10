@@ -3,10 +3,12 @@
 <%@ include file="header.jsp"%>
 <div class="contents">
 	<div class="container">
-		데이타 사이언스
+		<div id="page_title">
+			<h1>
+				데이타 사이언스
+			</h1>
+		</div>
 	</div>
 </div>
-
-</body>
 
 <%@ include file="footer.jsp"%>

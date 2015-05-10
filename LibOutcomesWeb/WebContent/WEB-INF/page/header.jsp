@@ -14,6 +14,7 @@
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/public.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css">
 	
 	<!--
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/index.css">
@@ -21,6 +22,8 @@
 </head>
 
 <body>
+
+<div id="wrapper">
 
 <div class="header">
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
@@ -33,7 +36,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand white" href="#">LibOutcomes</a>
+				<a class="navbar-brand white" href="/LibOutcomesWeb">LibOutcomes</a>
 			</div>
 			
 			<!-- 메뉴 리스트 -->

@@ -3,11 +3,13 @@
 <%@ include file="header.jsp"%>
 <div class="contents">
 	<div class="container">
-		도서관 DB
+		<div id="page_title">
+			<h1>
+				도서관 DB
+			</h1>
+		</div>
 	</div>
 
 </div>
-
-</body>
 
 <%@ include file="footer.jsp"%>

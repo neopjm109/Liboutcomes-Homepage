@@ -3,10 +3,12 @@
 <%@ include file="header.jsp"%>
 <div class="contents">
 	<div class="container">
-		적용사례
+		<div id="page_title">
+			<h1>
+				적용 사례
+			</h1>
+		</div>
 	</div>
 </div>
-
-</body>
 
 <%@ include file="footer.jsp"%>
