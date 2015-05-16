@@ -5,6 +5,11 @@
 <div class="contents">
 
 	<div class="container">
+		<div id="page_title">
+			<h1>
+				매뉴얼
+			</h1>
+		</div>
 <%
 
 	ResultSet rs = (ResultSet) request.getAttribute("manual_list");

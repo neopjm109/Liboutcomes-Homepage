@@ -18,9 +18,7 @@
 				서울 특별시 삼선구 삼선동2가 389 한성대학교 연구관 529호
 			</small>
 		</div>
-		
 	</div>
-	
 
 </div>
 
@@ -30,8 +28,9 @@
 
 <script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/public/indexFunction.js"></script>
 <!-- 
 <script src="${pageContext.request.contextPath}/assets/js/headerFunction.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/indexFunction.js"></script>
  -->
 </html>
