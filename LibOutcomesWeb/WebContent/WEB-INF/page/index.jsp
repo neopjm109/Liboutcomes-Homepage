@@ -10,7 +10,7 @@
 		@todo
 			이미지 내용은 변경 예정입니다. 
 	-->
-	<div class="col-md-8 col-centered col-no-padding">
+	<div class="col-lg-8 col-centered col-no-padding">
 		<div id="index_slider" class="owl-carousel owl-theme text-center">
 			<div>
 				<img src="${pageContext.request.contextPath}/assets/img/fullimage1.jpg">
@@ -30,7 +30,7 @@
 		이미지 사용시 3개의 이미지 모두 같은 높이여야 최적화로 나옵니다. 
 	-->
 	
-	<div class="col-md-8 col-centered col-no-padding">
+	<div class="col-lg-8 col-centered col-no-padding">
 		<div class="text-center column-list-3">
 			<div class="col-xs-4 col-no-padding">
 				<img src="${pageContext.request.contextPath}/assets/img/Lighthouse.jpg">

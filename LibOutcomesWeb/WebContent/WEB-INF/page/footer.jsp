@@ -30,6 +30,8 @@
 <script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/public/indexFunction.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/public/loginFunction.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/public/dataScienceManualFunction.js"></script>
 <!-- 
 <script src="${pageContext.request.contextPath}/assets/js/headerFunction.js"></script>
  -->

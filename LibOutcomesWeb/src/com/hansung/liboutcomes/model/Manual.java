@@ -6,6 +6,7 @@ public class Manual {
 	private int id;
 	private String title;
 	private int writerId;
+	private String writerName;
 	private Date date;
 	private String contents;
 	
@@ -26,6 +27,12 @@ public class Manual {
 	}
 	public void setWriterId(int writerId) {
 		this.writerId = writerId;
+	}
+	public String getWriterName() {
+		return writerName;
+	}
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
 	public Date getDate() {
 		return date;

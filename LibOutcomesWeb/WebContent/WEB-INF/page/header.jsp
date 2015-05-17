@@ -1,5 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String loginId = (String) session.getAttribute("liboutcomes_login");
+
+	pageContext.setAttribute("loginId", loginId);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -30,49 +36,56 @@
 
 <div class="header">
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-		<div class="container">
-			<!--
-				메뉴 로고 및 모바일 버전 메뉴
-			-->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand white" href="/LibOutcomesWeb">LibOutcomes</a>
-			</div>
-			
-			<!--
-				메뉴 리스트
-			-->
-			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li>
-						<a href="Project">프로젝트 소개</a>
-					</li>
-					<li>
-						<a href="Library">도서관 DB</a>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">데이터 사이언스</a>
-						
-						<ul class="dropdown-menu" role="menu">
-							<li>
-								<a href="DataScienceManual">메뉴얼</a>
-							</li>
-							<li>
-								<a href="DataScienceReference">적용사례</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				
-				<div class="nav navbar-right">
-					<a href="Login" class="btn navbar-btn btn-primary">로그인</a>
+		<div class="container-fluid">
+			<div class="col-lg-8 col-centered">
+				<!--
+					메뉴 로고 및 모바일 버전 메뉴
+				-->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand white" href="/LibOutcomesWeb" style="padding-left:0px; padding-right:0px;">LibOutcomes</a>
 				</div>
 				
+				<!--
+					메뉴 리스트
+				-->
+				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="Project">프로젝트 소개</a>
+						</li>
+						<li>
+							<a href="Library">도서관 DB</a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">데이터 사이언스</a>
+							
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a href="DataScienceManual">메뉴얼</a>
+								</li>
+								<li>
+									<a href="DataScienceReference">적용사례</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					
+					<div class="nav navbar-right" style="padding-right:15px;">
+						<!-- 세션 체크로 변경 -->
+						<c:if test = "${loginId eq null || loginId == ''}">
+							<a href="Login" class="btn navbar-btn btn-primary">로그인</a>
+						</c:if>
+						<c:if test = "${loginId ne null}">
+							<a href="Logout" class="btn navbar-btn btn-danger">로그아웃</a>
+						</c:if>
+					</div>
+				</div>
 			</div>
 		</div>
 	</nav>

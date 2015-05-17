@@ -10,7 +10,7 @@ import com.mysql.jdbc.PreparedStatement;
 public class MemberService {
 
 	Connection conn;
-	
+		
 	public MemberService() {
 		LibDBConnector libConnector = new LibDBConnector();
 		conn = libConnector.getConnection();
@@ -24,9 +24,6 @@ public class MemberService {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		System.out.println(email + " " + password);
-		
 		int size = 0;
 		
 		try {
