@@ -70,6 +70,10 @@ a {
 	padding-bottom:220px;
 }
 
+.page-title {
+	margin-bottom:50px;
+}
+
 @media (min-width:768px) {
 
 	.contents {
