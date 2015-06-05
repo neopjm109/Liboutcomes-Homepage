@@ -1,3 +1,4 @@
+<%@page import="com.hansung.liboutcomes.model.TestModel"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,6 +32,17 @@ html, body {
 </head>
 <body>
 
+<%
+	TestModel model = (TestModel) request.getAttribute("model");
+%>
+
+<div style="margin:0 auto;">
+
+<%=model.getHtml()%>
+
+</div>
+
+<!-- 
 <div class="pdf-page">
 	<p style="font-size:1.9em;">&nbsp;</p>
 	<p style="font-size:1.9em;">&nbsp;</p>
@@ -74,6 +86,6 @@ html, body {
     </p>
 					
 </div>
-
+ -->
 </body>
 </html>

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hansung.liboutcomes.model.TestModel;
+import com.hansung.liboutcomes.model.TestModelService;
+
 @WebServlet("/Pdf")
 public class PdfServlet extends HttpServlet {
 
@@ -21,6 +24,13 @@ public class PdfServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		TestModelService service = new TestModelService();
+		
+		TestModel model = service.getTestModel();
+		
+		req.setAttribute("model", model);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/page/pdf.jsp");
 		dispatcher.forward(req, resp);
 	}

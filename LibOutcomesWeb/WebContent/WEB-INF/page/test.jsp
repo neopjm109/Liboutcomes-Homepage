@@ -1,20 +1,59 @@
-<%@ page import="com.hansung.liboutcomes.utils.PdfExportByPhantom" %>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="com.hansung.liboutcomes.model.TestModel"%>
+<%@page import="com.hansung.liboutcomes.model.TestModelService"%>
+<%@ page import="com.hansung.liboutcomes.utils.PdfExportByPhantom"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/bootstrap/bootstrap.min.css">
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/bootstrap/summernote/summernote.css">
 <title>Insert title here</title>
 </head>
 <body>
 
-<%
-	PdfExportByPhantom.Convert();
-%>
+	<%
+		PdfExportByPhantom.Convert();
+		TestModel model = (TestModel) request.getAttribute("model");
+	%>
+	<div style="width:1350px; margin:0 auto;">
+		<div id="summernote"></div>
+	</div>
+	<button id="confirm">í™•ì¸</button>
+	Return
+	<br>
+	<br>
 
-Return<br><br>
+	<a href="/LibOutcomesWeb/pdfDownload">PDFë³€í™˜ ê²°ê³¼ ë‹¤ìš´ë¡œë“œ</a>
 
-<a href="/LibOutcomesWeb/pdfDownload">PDFº¯È¯ °á°ú ´Ù¿î·Îµå</a>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/jquery-1.11.2.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/summernote.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#summernote').summernote({
+				height: 500
+			});
+			$("#summernote").code('<%=model.getHtml()%>');
+			$("#confirm").on('click', function() {
+				
+				$.post("updateTestModel", {
+					"id": "1",
+					"html" : $("#summernote").code()
+				}, function(success) {
+					alert(success);
+				});
+			});
+		});
+	</script>
 </body>
 </html>
