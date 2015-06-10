@@ -22,12 +22,12 @@ CREATE TABLE `manual` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- 데이터사이언스 테이블
-CREATE TABLE data_science (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `data_science` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL, -- 제목
   `content` text NOT NULL, -- 내용
-  `fileName` varchar(255) DEFAULT NULL, -- 파일명
-  `name` varchar(50) DEFAULT NULL, -- 글쓴이? 추후 수정
-	`date` datetime NOT NULL, -- 날짜
-	PRIMARY KEY(num)
-);
+  `filename` varchar(255) DEFAULT NULL, -- 파일명
+  `writer` varchar(50) DEFAULT NULL, -- 글쓴이? 추후 수정
+  `date` datetime NOT NULL, -- 날짜
+  PRIMARY KEY(id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
