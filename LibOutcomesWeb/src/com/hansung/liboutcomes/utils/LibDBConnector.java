@@ -6,15 +6,17 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Connection;
 
 public class LibDBConnector {
+	
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/liboutcomes";
 	
-	static final String DB_USER = "liboutcomes";
-	static final String DB_PASSWORD = "qkr!tjd@wo#";
+	static final String DB_USER = "root";
+	static final String DB_PASSWORD = "1234";
 	
 	Connection conn = null;
 	
 	public LibDBConnector() {
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
@@ -28,6 +30,7 @@ public class LibDBConnector {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public Connection getConnection() {

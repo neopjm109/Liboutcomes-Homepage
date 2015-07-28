@@ -1,72 +1,29 @@
-﻿<%@page import="com.hansung.liboutcomes.model.Manual"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.sql.ResultSet"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ include file="header.jsp"%>
-<%
 
-	/*
-	*		Get Request
-	*/
-	
-	ArrayList<Manual> list = (ArrayList<Manual>) request.getAttribute("manual_list");
-	
-	/*
-	*		Set PageContext
-	*/
-	
-	pageContext.setAttribute("list", list);
-%>
-<div class="contents">
+<!-- 데이터사이언스 메뉴얼
+==========================================-->
 
-	<div class="col-lg-8 col-centered">
-		<div id="page_title">
-			<h1>
-				매뉴얼
-			</h1>
+<div id="tf-services" class="text-center">
+    <div class="container">
+    	
+    	<!-- 제목 -->
+    	<div class="space"></div>
+        <div class="section-title center">
+            <h2>데이터사이언스 <strong>메뉴얼</strong></h2>
+            <div class="line">
+                <hr>
+            </div>
 		</div>
+		<div class="space"></div>
+		<!-- /.제목 -->
 		
-		<div class="col-lg-12 col-centered">
-			<table id="board_list" class="table">
-				<thead>
-					<tr>
-						<th class="text-center" width="10">
-							No
-						</th>
-						<th class="text-center">
-							제목
-						</th>
-						<th class="text-center" style="width:150px;">
-							작성자
-						</th>
-						<th class="text-center" style="width:150px;">
-							날짜
-						</th>
-					</tr>
-				</thead>
-				<tbody class="text-center">
-					<c:forEach items="${list}" var="row">
-						<tr style="cursor:pointer;">
-							<td>
-								${row.id}
-							</td>
-							<td>
-								${row.title}
-							</td>
-							<td>
-								${row.writerName}
-							</td>
-							<td>
-								${row.date}
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
+		
+		<!-- 내용 -->
+		<!-- /.내용 -->
+
+    </div>
 </div>
 
 <%@ include file="footer.jsp"%>
