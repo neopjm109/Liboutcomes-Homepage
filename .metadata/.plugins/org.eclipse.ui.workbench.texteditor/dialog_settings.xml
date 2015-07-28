@@ -2,18 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="${pageContext.request.contextPath}/assets/img/reference/" key="selection"/>
+		<item value="&lt;/pre&gt;" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="img/"/>
-			<item value="goto-top"/>
-			<item value="2.1.4"/>
 			<item value="&lt;/pre&gt;"/>
+			<item value="2.2.3"/>
+			<item value="2.2.2"/>
+			<item value="src=&quot;img"/>
+			<item value="&lt;pre"/>
+			<item value="pre&gt;"/>
+			<item value="pre"/>
+			<item value="img/"/>
 		</list>
 		<list key="replacehistory">
+			<item value="src=&quot;${pageContext.request.contextPath}/assets/img/reference"/>
 			<item value="${pageContext.request.contextPath}/assets/img/reference/"/>
 		</list>
 	</section>
