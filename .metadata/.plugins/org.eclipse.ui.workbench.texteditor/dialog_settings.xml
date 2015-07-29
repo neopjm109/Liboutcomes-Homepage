@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="&lt;/pre&gt;" key="selection"/>
+		<item value="tf-service" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="tf-service"/>
 			<item value="&lt;/pre&gt;"/>
 			<item value="2.2.3"/>
 			<item value="2.2.2"/>
@@ -15,7 +16,6 @@
 			<item value="&lt;pre"/>
 			<item value="pre&gt;"/>
 			<item value="pre"/>
-			<item value="img/"/>
 		</list>
 		<list key="replacehistory">
 			<item value="src=&quot;${pageContext.request.contextPath}/assets/img/reference"/>

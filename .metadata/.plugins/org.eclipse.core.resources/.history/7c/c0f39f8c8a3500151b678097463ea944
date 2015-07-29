@@ -1,0 +1,12 @@
+$(window).on('scroll', function() {
+	if ($(this).scrollTop() > 200) {
+		$(".goto-top").show();
+	} else {
+		$(".goto-top").show();
+	}
+});
+
+
+$(".goto-top").on('click', function() {
+	$(window).scrollTop(0);
+});

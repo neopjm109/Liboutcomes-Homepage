@@ -1,22 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="header.jsp"%>
 
-<!-- Page Content -->
-<div class="container">
+<!-- 도서관 DB
+==========================================-->
 
-	<!-- Page Heading -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">도서관 DB
-                <small>Library DB</small>
-            </h1>
-        </div>
+<div id="tf-services" class="text-center">
+    <div class="container">
+    	
+    	<!-- 제목 -->
+    	<div class="space"></div>
+        <div class="section-title center">
+            <h2>도서관 <strong>Database</strong></h2>
+            <div class="line">
+                <hr>
+            </div>
+		</div>
+		<div class="space"></div>
+		<!-- /.제목 -->
+		
+		
+		<!-- 내용 -->
+		<!-- /.내용 -->
+
     </div>
-    <!-- /.row -->
-    
 </div>
-<!-- /.container -->
-
 
 <%@ include file="footer.jsp"%>

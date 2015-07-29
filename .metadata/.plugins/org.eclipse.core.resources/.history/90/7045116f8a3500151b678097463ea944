@@ -1,0 +1,3 @@
+$(".goto-top").on('click', function() {
+	
+});

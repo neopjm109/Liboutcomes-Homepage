@@ -32,6 +32,7 @@
     <!-- 액션 -->
 	<script src="${pageContext.request.contextPath}/assets/js/public/loginFunction.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/public/boardFunction.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/public/referenceFunction.js"></script>
 	
 	<!-- Script to Activate the Summernote -->
 	<script>
