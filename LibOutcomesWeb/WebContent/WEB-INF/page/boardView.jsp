@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+    pageEncoding="UTF-8"%>
 
 <%@ include file="header.jsp"%>
 
 <!-- 게시판 글 보기
 ==========================================-->
-<div class="container">
+<section class="container">
 	<div class="space"><br><br><br></div>
 	
     <!-- 제목  -->
-    <div class="row">
+    <article class="row">
         <div class="col-lg-12 col-center">
             <h1 class="page-header">${board.title}
                 <small>by ${board.writerName}</small>
             </h1>
         </div>
-    </div>
+    </article>
     <!-- /.제목 -->
     
-
     <!-- 내용 -->
-    <div class="row">
+    <article class="row">
         <div class="col-lg-12 col-center">
 			
 			<!-- 글 정보 -->
@@ -34,8 +34,7 @@
             	<a class="btn btn-primary" id="board_modify" name="${board.num}">글 수정</a>
             	<a class="btn btn-primary" id="board_delete" name="${board.num}">글 삭제</a>
             </div>
-            <!-- /.글 정보 -->
-                  
+            <!-- /.글 정보 --> 
 
             <!-- 댓글 작성 -->
             <hr>
@@ -49,7 +48,6 @@
                 </form>
             </div>
             <!-- /.댓글 작성 -->
-
 
 			<!-- 댓글 -->
             <hr>
@@ -68,11 +66,10 @@
             <!-- /.댓글 -->
             
         </div>
-    </div>
-    <!-- /.글 내용 -->
+    </article>
+    <!-- /.내용 -->
     
-</div>
-<!-- /.container -->
+</section>
 
 <br /><br /><br /><br />
 

@@ -19,6 +19,7 @@ $(document).ready(function() {
 		$popupMenu.hide();
 	});
 	
+
 	/*
 	 * 		로그인 로그아웃 버튼 이벤트
 	 */

@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.hansung.liboutcomes.model.BoardCommentService;
 import com.hansung.liboutcomes.model.BoardService;
 
+/**
+ * @breif 일반 게시판 글 삭제 서블릿
+ * @author YuJin
+ *
+ */
 @WebServlet("/BoardDelete")
 public class BoardDeleteServlet extends HttpServlet {
 	

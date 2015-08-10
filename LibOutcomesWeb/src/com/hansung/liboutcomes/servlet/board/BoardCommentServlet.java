@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.hansung.liboutcomes.model.BoardComment;
 import com.hansung.liboutcomes.model.BoardCommentService;
 
+/**
+ * @breif 일반 게시판 댓글 작성 서블릿
+ * @author YuJin
+ *
+ */
 @WebServlet("/BoardComment")
 public class BoardCommentServlet extends HttpServlet {
 
