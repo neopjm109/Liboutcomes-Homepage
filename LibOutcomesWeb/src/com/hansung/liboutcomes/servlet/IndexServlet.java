@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.hansung.liboutcomes.utils.LibDBConnector;
 import com.mysql.jdbc.Connection;
 
+/**
+ * @breif ∏ﬁ¿Œ º≠∫Ì∏¥
+ * @author YuJin
+ *
+ */
 @WebServlet("/")
 public class IndexServlet extends HttpServlet {
 

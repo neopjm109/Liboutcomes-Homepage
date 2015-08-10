@@ -13,25 +13,32 @@ import javax.servlet.http.HttpServletResponse;
 import com.hansung.liboutcomes.model.Board;
 import com.hansung.liboutcomes.model.BoardService;
 
+/**
+ * @breif 일반 게시판 서블릿
+ * @author YuJin
+ *
+ */
 @WebServlet("/Board")
 public class BoardServlet extends HttpServlet {
-
+	
 	private static final long serialVersionUID = 1L;
-	private BoardService manualService;
+	
+	private BoardService boardService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
 		// TODO Auto-generated method stub
-		manualService = new BoardService();
+		boardService = new BoardService();
 		
-		ArrayList<Board> list = manualService.getBoardList();
+		ArrayList<Board> list = boardService.getBoardList();
 		
 		req.setAttribute("list", list);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/page/board.jsp");
 		dispatcher.forward(req, resp);
+		
 	}
 
 }

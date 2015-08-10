@@ -1,26 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+    pageEncoding="UTF-8"%>
 
 <%@ include file="header.jsp"%>
 
 <!-- 게시판 글 수정
 ==========================================-->
-
-<div class="container">
+<section class="container">
 	<div class="space"><br><br><br></div>
 	
 	<!-- 제목 -->
-    <div class="row">
+    <article class="row">
         <div class="col-lg-12 col-center">
             <h1 class="page-header">글 수정
                 <small>게시판</small>
             </h1>
         </div>
-    </div>
+    </article>
    	<!-- /.제목 -->
    	
-   
     <!-- 글 작성 -->
-    <div class="row">
+    <article class="row">
         <div class="col-lg-12 col-center">
 
             <form action="<c:url value="BoardModify?num=${board.num}"/>" method="post" >
@@ -38,7 +37,7 @@
                 </div>
                 
                 <div class="form-group">
-					<textarea id="summernote" name="contents">${board.contents}</textarea>
+					<textarea class="summernote" name="contents">${board.contents}</textarea>
                 </div>
                 
                 <a class="btn btn-primary" href="BoardView?num=${board.num}" role="button">취소</a>
@@ -47,11 +46,10 @@
             </form>
             
         </div>
-    </div>
+    </article>
     <!-- /.글 작성 -->
 
-</div>
-<!-- /.container -->
+</section>
 
 <br /><br /><br /><br />
 

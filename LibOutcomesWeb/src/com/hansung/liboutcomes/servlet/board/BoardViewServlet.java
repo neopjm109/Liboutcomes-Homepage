@@ -15,6 +15,11 @@ import com.hansung.liboutcomes.model.BoardComment;
 import com.hansung.liboutcomes.model.BoardCommentService;
 import com.hansung.liboutcomes.model.BoardService;
 
+/**
+ * @breif 일반 게시판 글 보기 서블릿
+ * @author YuJin
+ *
+ */
 @WebServlet("/BoardView")
 public class BoardViewServlet extends HttpServlet {
 

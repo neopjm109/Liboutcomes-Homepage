@@ -9,7 +9,7 @@ public class LibDBConnector {
 	
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/liboutcomes";
-	
+
 	static final String DB_USER = "liboutcomes";
 	static final String DB_PASSWORD = "qkr!tjd@wo#";
 	

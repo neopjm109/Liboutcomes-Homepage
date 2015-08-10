@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.hansung.liboutcomes.model.Board;
 import com.hansung.liboutcomes.model.BoardService;
 
+/**
+ * @breif 일반 게시판 글 수정 서블릿
+ * @author YuJin
+ *
+ */
 @WebServlet("/BoardModify")
 public class BoardModifyServlet extends HttpServlet {
 	
