@@ -2147,7 +2147,957 @@ pre {
                 앞서 제시된 지표는 그 자체로 다른 데이터를 사용하여 추가적인 분석이 가능하다. 예를 들어 대출 흐름을 좀 더 자세히 분석하기 위해 성별, 연령대와 연령층을 함께 제공하여 좀 더 깊이 있게 분석할 수 있으며 다양하게 응용 가능하다. 지표를 만들기 위해 데이터를 가공할 때 가장 쉽게 발견하는 문제점은 원 데이터, 즉 도서관 시스템에서 반출한 데이터의 오류이다. 다양한 원인이 있겠지만, 이러한 오류는 데이터 가공 및 변환에서 많은 수작업을 요구한다. 또 다른 문제는 한 번에 지표용 데이터가 추출되지 않기 때문에 관계형 데이터베이스의 개념과 원리, 더 나아가 활용능력을 갖추어야 한다. 
                 </div>
                 <div id="ref_2_3">
-                    <h2>2.3 이용자 세분화 : RFM 기법</h2>
+                <h2>2.3 이용자 세분화 : RFM 기법</h2>
+                정의
+                모든 이용자를 만족시키는 도서관 서비스를 개발한다는 것은 쉬운 일이 아니다. 전체를 대상으로 하기보다는 이용자를 동일한 특성을 가진 작은 집단으로 나누고 각 집단별로 맞춤형의 서비스를 제공한다면 만족도 제고는 물론 이용자의 가치 창출이 가능할 것이다. 이러한 과정을 이용자 세분화라 한다. 이용자 세분화를 위해서 경영학에서 사용하는 방법들은 다양하지만 많이 사용되는 방법 중의 하나는 RFM기법이다. RFM 기법은 세 가지 요소인 R(Recency: 최근성), F(Frequency: 빈도), M(Monetary: 금액)을 이용하여 고객을 세부적인 집단으로 나눈다. 세 요소를 결합하여 작은 집단으로 나누는데 각 요소를 3개의 범주로 묶는다면 총 27개의 이용자 집단을 만들 수 있다. 27개 집단 모두를 고려한 서비스가 아닌 그 중에서 한 개를 선택하여 그 집단에 맞는 서비스를 제공하는 것이 이용자 세분화의 목적이다. 
+
+                측정방법
+
+                (1) 분석을 위한 준비
+                기본정보: 이용자별 식별번호, 최근대출일, 대출빈도, 대출량
+                추가정보: 성별, 연령대 등의 인구통계정보
+                분석 소프트웨어: SPSS 18
+
+                대부분의 도서관이 무료로 대출서비스를 제공한다는 점에서 RFM에서 금액(monetary)은 ‘0’에 해당한다. 따라서 도서관 환경에 맞게 대출의 량으로 치환하여 계산한다. 
+
+                <div class="descript-block">
+                    SPSS 평가판 다운로드 
+                    <a href="http://www.datasolution.kr/product/product_statistics.asp">http://www.datasolution.kr/product/product_statistics.as</a>
+                    위 웹사이트는 SPSS Korea사이트로 링크를 통해 연결된 웹페이지의 오른쪽 메뉴 중 ‘평가판 다운로드’를 클릭하여 무료 평가판을 다운로드할 수 있다. 단, 회원가입이 필요하다.
+                </div>
+
+                (2) 분석절차
+                가. 액세스 처리과정 
+                ① [만들기] 탭 [쿼리 디자인]을 클릭하고 이용자 테이블 User와 대출 데이블 Circ을 선택한다.
+                ② [디자인] 탭의 [표시/숨기기] 그룹의 [요약]을 클릭하여 ‘요약’ 행을 추가한다.
+                ③ 쿼리를 아래 그림 57과 같이 작성한다. 첫 번째 필드부터 User 테이블에서 “대출자번호”, “성”, “나이”를 드래그 한다. 네 번째와 다섯 번째 칸은 “Expr2: Format([대출일],"yyyy-mm-dd")”, “Expr1: Max(Format([대출일],"yyyy-mm-dd"))”를 입력한다. 마지막 칸과 각각의 요약 칸을 그림 57처럼 입력한다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_57.png">
+                    그림57. RFM 분석 실행방법-1
+                </div>
+
+                ④ 위의 쿼리를 적당한 이름을 주어 저장한다.
+                ⑤ 새로운 쿼리를 만들기 위해 [만들기] 탭 [쿼리 디자인]을 클릭하고, 앞서 저장한 쿼리를 ‘테이블 표시’ 창의 ‘쿼리’ 탭에서 선택하여 표시한다.
+                ⑥ [디자인] 탭의 [표시/숨기기] 그룹의 [요약]을 클릭하여 ‘요약’ 행을 추가한다.
+                ⑦ 쿼리를 아래 그림 58과 같이 작성한다. 첫 번째 필드부터 앞서 저장한 쿼리(여기서는 Query2)에서 “대출자번호”, “성”, “나이”를 드래그 한다. 네 번째부터 여섯 번째까지는 그림과 같이 “최근대출시기:expr1”, “대출빈도expr1”, “대출량:id의개수”로 표현한다. 특히 요약 칸에 각각 ‘최대값’, ‘개수’, ‘합계’ 속성 값을 주의해서 선택한다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_58.png">
+                    그림58. RFM 분석 실행방법-2
+                </div>
+
+                ⑧ 전체 데이터를 선택하여 그 상태에서 Ctrl-C(복사하기)를 눌러 전체 내용을 복사하고, 이를 엑셀로 복사한다. 즉 간단히 말하면 쿼리 결과를 엑셀로 복사한다.
+
+                나. SPSS 처리과정
+                ① 그림 59와 같이 앞서 준비된 엑셀 데이터파일을 SPSS에서 연다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_59.png">
+                    그림59. RFM 분석 실행방법-3
+                </div>
+
+                ② 상단 메뉴바에서 Direct Marketing > Choose Technique을 선택한다.
+                ③ “Understand My Contacts” 항목의 “Help identity my best contacts (RFM Analaysis)”선택한 후 “Continue”를 클릭한다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_60.png">
+                    그림60. RFM 분석 실행방법-4
+                </div>
+                
+                ④ “Customer data”를 선택한 후 “Continue” 클릭한다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_61.png">
+                    그림61. RFM 분석 실행방법-5
+                </div>
+
+                ⑤ RFM 분석 창에 각각의 요소를 지정한 후, “OK”를 클릭한다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_62.png">
+                    그림62. RFM 분석 실행방법-6
+                </div>
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_63.png">
+                    그림63. RFM 분석 실행 결과
+                </div>
+
+                (3) RFM 각 요소 값의 범위 확인
+                ① Analyses > Reports > Case Summaries... 클릭한다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_64.png">
+                    그림64. RFM 값의 범위 확인방법-1
+                </div>
+
+                ② 최소값(Minimum)과 최대값(Maximum)을 선택하여 오른쪽 칼럼으로 넘긴 후, “Continue”를 클릭한다.
+                
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_65.png">
+                    그림65. RFM 값의 범위 확인방법-2
+                </div>
+                
+                ③ 다음과 같은 결과값을 확인할 수 있다. 그림 68은 특정기간 내에서 대출빈도에 따른 집단을 나눌 때, 집단 1에 속하는 이용자의 대출빈도의 범위는 1부터 1까지 이다. 즉, 1회 대출한 사람들은 집단 1에 속한다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_66.png">
+                    그림66. RFM 값의 범위 확인방법-3
+                </div>
+
+                (4) 각 세분화 집단별 이용자 수 확인
+                ① Tables > Custom Tables... 클릭한다.
+                ② “Variables”창에서 RFM 분석결과로 생성된 R, F, M 변수를 오른쪽 테이블 창의 행과 열에 각각 배치한다.
+                
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_67.png">
+                    그림67. 세분화집단별 이용자수 확인방법
+                </div>
+
+                ③ OK를 클릭한 결과는 다음과 같다.
+
+                <div class="descript-table">
+
+                    <table>
+                        <tr>
+                            <th rowspan="2" colspan="3">Recency score</th>
+                            <th colspan="5">Monetary score</th>
+                            <th rowspan="2">Total</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="6">1</td>
+                            <td rowspan="5">Frequency score</td>
+                            <td>1</td>
+                            <td>962</td>
+                            <td>272</td>
+                            <td>12</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1247</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>329</td>
+                            <td>712</td>
+                            <td>169</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>1214</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>19</td>
+                            <td>337</td>
+                            <td>579</td>
+                            <td>140</td>
+                            <td>4</td>
+                            <td>1079</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>22</td>
+                            <td>174</td>
+                            <td>452</td>
+                            <td>49</td>
+                            <td>697</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>3</td>
+                            <td>58</td>
+                            <td>238</td>
+                            <td>299</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td>1310</td>
+                            <td>1343</td>
+                            <td>937</td>
+                            <td>654</td>
+                            <td>292</td>
+                            <td>4536</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="6">2</td>
+                            <td rowspan="5">Frequency score</td>
+                            <td>1</td>
+                            <td>445</td>
+                            <td>270</td>
+                            <td>6</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>721</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>228</td>
+                            <td>480</td>
+                            <td>244</td>
+                            <td>10</td>
+                            <td>0</td>
+                            <td>962</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>17</td>
+                            <td>287</td>
+                            <td>496</td>
+                            <td>255</td>
+                            <td>5</td>
+                            <td>1060</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>21</td>
+                            <td>234</td>
+                            <td>601</td>
+                            <td>182</td>
+                            <td>1038</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>5</td>
+                            <td>127</td>
+                            <td>595</td>
+                            <td>727</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td>690</td>
+                            <td>1058</td>
+                            <td>985</td>
+                            <td>993</td>
+                            <td>782</td>
+                            <td>4508</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="6">2</td>
+                            <td rowspan="5">Frequency score</td>
+                            <td>1</td>
+                            <td>287</td>
+                            <td>145</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>436</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>170</td>
+                            <td>285</td>
+                            <td>151</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>610</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>23</td>
+                            <td>220</td>
+                            <td>351</td>
+                            <td>178</td>
+                            <td>2</td>
+                            <td>774</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>33</td>
+                            <td>199</td>
+                            <td>675</td>
+                            <td>225</td>
+                            <td>1132</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>3</td>
+                            <td>192</td>
+                            <td>1405</td>
+                            <td>1600</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td>480</td>
+                            <td>683</td>
+                            <td>708</td>
+                            <td>1049</td>
+                            <td>1632</td>
+                            <td>4552</td>
+                        </tr>
+                    </table>
+                    <div>표-15  세분화 집단별 이용자수</div>
+                </div>
+
+                결과의 해석 및 의미
+
+                355 집단은 최근까지 도서관에서 책을 대출한 고객으로 대출빈도도 높고 대출량도 많은 이용자들이 포함되어 있다. 155 집단에 속한 238명과 255 집단에 속한 595명은 높은 대출빈도와 량에도 불구하고 더 이상 도서관에서 대출을 하지 않는다. 그 원인에 대해서는 추가적인 분석이 요구되지만 현재의 시점에서 355 집단에 속한 1405명의 이용자들을 계속적으로 독서를 할 수 있도록 하는 방안﹀마련이 요구된다. 한 예로 독서 마일리지제도를 도입하여 다독자에 대한 인센티브를 제공하는 방법을 고려할 수 있다. 
+                311 집단의 경우에는 한 번 대출을 한 집단으로 계속적인 이용을 위해서 도서관이 줄 수 있는 혜택을 강조하는 홍보를 할 필요가 있다. 
+                </div>
+                <div id="ref_3">
+                <h1>3. 지리정보시스템(GIS)을 활용한 분석</h1>
+                </div>
+
+                <div id="ref_3_1">
+                <h2>3.1 GIS에 대한 이해</h2>
+                지리정보시스템(이하 GIS)은 지리학뿐만 아니라 토목, 도시계획, 경영 등 다양한 분야에 사용되는 만큼 다양한 정의를 가지고 있다. 포괄적으로 GIS를 툴박스로 보는 관점과 GISystems, GIScience, GIStudies 등으로 보는 관점이 있다. 전통적으로는 지리정보를 처리하는 도구로 활용된다는 점이 강조되었기 때문에 다양한 툴 들의 집합 혹은 시스템으로 간주되었다. 이러한 정의로 이희연과 심재연(이희연, 심재연. (2011). GIS 지리정보학. 경기 파주: 성지사. )은 “공간적 문제를 해결하기 위해 다양한 지리정보를 수집, 구축, 유지, 관리, 편집하고 분석과 모델링을 통해 추출된 고부가가치의 정보를 표현하고 출력할 수 있게 고안된 종합적인 정보처리시스템”이라고 GIS를 정의했다. 그러나 최근에는 지리정보의 사회적 활용에 더욱 관심을 갖게 되고 지리학 이외의 다른 여러 분야에서 활용되면서 GIStudies의 개념이 중요하게 다루어지고 있다. 지리정보의 활용이 어떻게 사회의 각 분야에 영향을 미치는지에 대한 연구가 진행되고 있다. 
+                그림 68은 GIS의 활용분야를 보여주고 있다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_68.png">
+                    그림68. 세분화집단별 이용자수 확인방법
+                </div>
+
+                인간의 행위는 시간과 공간으로 표현될 수 있다. 시간적으로는 초, 분, 시, 일, 요일, 달, 년 등으로 기록될 수 있다. 또한 공간적으로 동, 구, 시, 국가 등으로 행위를 발생하는 지점을 나타낼 수 있다. 이러한 점에서 공간은 인간행위를 표현하는 기본적인 수단이 되고 공간에 대한 연구를 위해 GIS는 활용가치가 높다. 
+                GIS 분석을 위해서는 인간행위는 물론 공간적인 요소들이 점, 선, 면 등의 지리정보로 표현되어야 한다. 이들 지리정보들이 GIS 소프트웨어의 레이어로 포함되고 레이어들의 중첩을 통해 결과 값을 보여준다. 도서관 환경에 있어서도 도서관과 이용자의 위치는 점의 형태로 표현이 가능하고 이용자의 도서관 접근경로나 이동도서관의 경로 등은 선으로 표현이 가능하다. 또한 도서관의 봉사대상지역은 면의 형태를 보인다는 점에서 도서관 관련 행위의 분석에 GIS를 활용할 수 있다. 
+                Ottensmann(Ottensmann, J. R. (1997). Using geographic information systems to analyze library utilization. Library Quarterly, 67(1), 24-49.)은 도서관 환경에서 GIS를 어떻게 적용할 수 있을 것인지에 대해 논의하였다. 이후 공공도서관 분야에서 GIS를 적용한 연구들이 진행되었으나 수집, 활용되는 도서관 데이터가 위치정보만을 포함하고 있다는 점에서 낮은 활용도를 보이고 있다. 본 매뉴얼에서 활용될 도서관 데이터에는 대출 및 장서 정보를 포함하고 있다는 점에서 그 활용도가 높을 것으로 기대된다. 
+
+                </div>
+                <div id="ref_3_2">
+                <h2>3.2 GIS분석을 위한 준비</h2>
+                </div>
+                <div id="ref_3_2_1">
+                <h3>3.2.1 지리정보시스템 선정</h3>
+                지리정보시스템은 지리정보를 바탕으로 다양한 유형의 정보를 결합함으로써 문제해결을 하거나 의사결정을 지원하는 시스템이다. 상용화된 GIS 소프트웨어들 중에서 본 매뉴얼은 가장 활용도가 높은 ESRI(Environmental Systems Research Institute)에서 개발한 ArcMap 10을 이용하여 분석하였다. ArcMap은 데이터의 생성과 저장, 처리는 물론 공간정보에 대한 통계적 분석까지 모든 유형의 지리정보처리를 위한 방법을 포함하고 있다. 단점으로 소프트웨어의 구입비용이 높다는 점이 있다. 
+                ESRI 웹사이트에서는 ArcMap에 대한 시험버전을 제공하고 있다는 점에서 사용 후에 구입에 대한 결정을 할 수 있을 것이다. 
+
+                <div class="descript-block">
+                    ArcMap 다운로드
+                    ● 다운로드 사이트: http://www.esri.com/products/free-trials 
+                    ● 다운로드 항목: ArcGIS for Desktop plus extensions
+                </div>
+                </div>
+                <div id="ref_3_2_2">
+                <h3>3.2.2 지리정보 수집</h3>
+                도서관 데이터에 대한 지리적인 분석을 위해서는 앞서 언급한 데이터베이스에 포함된 모든 사항들이 GIS에서 분석될 수 있다. 그러나 무엇보다도 중요한 지리정보는 기본적인 지도에 대한 정보이다. 본 매뉴얼에서 인천광역시에 대한 지도를 바탕으로 분석을 진행하였다. 인천광역시에 대한 지도는 통계청에서 운영하는 통계지리정보서비스(http://sgis.kostat.go.kr/)를 통해 획득가능하다. 통계지리정보서비스는 인천광역시는 물론, 전국의 시군구, 읍면동, 센서스 집계구에 대한 지리정보를 제공하고 있다. 표 17은 제공되는 공간통계자료의 목록을 보여주고 있다. 
+
+                <div class="descript-table">
+                    <table>
+                        <tr>
+                            <td>분류</td>
+                            <td>대상자료명</td>
+                            <td>기준연도</td>
+                            <td>자료형식</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">통계자료</td>
+                            <td>집계구별  통계(인구)</td>
+                            <td>2010, 2005, 2000</td>
+                            <td>txt</td>
+                        </tr>
+                        <tr>
+                            <td>집계구별 통계(가구)</td>
+                            <td>2010, 2005, 2000</td>
+                            <td>txt</td>
+                        </tr>
+                        <tr>
+                            <td>집계구별 통계(주택)</td>
+                            <td>2010, 2005, 2000</td>
+                            <td>txt</td>
+                        </tr>
+                        <tr>
+                            <td>집계구별 통계(사업체)</td>
+                            <td>2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000</td>
+                            <td>txt</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">통계지역경계</td>
+                            <td>센서스용행정구역경계<br>(시도,시군구,읍면동)</td>
+                            <td>2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1995, 1990, 1985, 1980, 1975</td>
+                            <td>SHP</td>
+                        </tr>
+                        <tr>
+                            <td>도시화 지역</td>
+                            <td>2011</td>
+                            <td>SHP</td>
+                        </tr>
+                        <tr>
+                            <td>도시권 경계</td>
+                            <td>2005</td>
+                            <td>SHP</td>
+                        </tr>
+                        <tr>
+                            <td>집계구경계</td>
+                            <td>2011</td>
+                            <td>SHP</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="6">센서스지도</td>
+                            <td>DB설계</td>
+                            <td>2011</td>
+                            <td>hwp</td>
+                        </tr>
+                        <tr>
+                            <td>하천</td>
+                            <td>2011</td>
+                            <td>SHP</td>
+                        </tr>
+                        <tr>
+                            <td>건물</td>
+                            <td>2011</td>
+                            <td>SHP</td>
+                        </tr>
+                        <tr>
+                            <td>도로</td>
+                            <td>2011</td>
+                            <td>SHP</td>
+                        </tr>
+                        <tr>
+                            <td>철도</td>
+                            <td>2011</td>
+                            <td>SHP</td>
+                        </tr>
+                        <tr>
+                            <td>등고</td>
+                            <td>2009</td>
+                            <td>SHP</td>
+                        </tr>
+                    </table>
+                    <div>표17 공간통계자료 목록</div>
+                </div>
+                통계지리정보서비스는 자료 입수방법에 대해서도 홈페이지에 자세하게 설명하고 있다. 다음 링크에서 확인가능하다. <a href="http://sgis.kostat.go.kr/contents/shortcut/shortcut_05.jsp">http://sgis.kostat.go.kr/contents/shortcut/shortcut_05.jsp</a> 본 매뉴얼에서는 통계지역경계에 대한 자료만을 활용할 것이다. 지역경계의 종류 중에서도 시군구동의 행정구역 경계와 센서스 자료수집을 위한 집계구 경계를 사용하였다. 이들 지역경계 자료는 인천광역시뿐만 아니라 전국의 지도를 포함하고 있다. 따라서 전국지도로부터 인천광역시만을 추출하여 사용할 필요가 있다. 그림 69는 인천광역시 지역을 나타내고 있으며 경계선은 통계청에서 사용하는 통계 집계구의 경계를 보여주고 있다. 
+                본 매뉴얼의 대상 도서관이 수봉, 영종, 율목 도서관이라는 점에서 영종도 주변을 제외한 도서지역과 김포는 대상지역에서 제외될 필요가 있다. 따라서 실제로 본 매뉴얼에서 사용되는 활용 지역은 그림 70과 같이 인천광역시 중에서 내륙에 해당하는 부분과 영종도 일대의 도서지역이 된다. 지도에서 일부지역을 추출하는 방법은 GIS를 활용한 분석지표에서 설명하였다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_69.png">
+                    그림69. 인천광역시 집계구 경계
+                </div>
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_70.png">
+                    그림70. 인천광역시 일부(집계구)
+                </div>
+
+                </div>
+                <div id="ref_3_2_3">
+                <h3>3.2.3 지오코딩</h3>
+                지오코딩은 주소정보를 지리적 좌표로 변환하는 과정을 의미한다. 지리적 좌표는 위도와 경도로 표시되는데 이를 바탕으로 지도상의 위치를 배치할 수 있다. 예를 들면, 수봉도서관의 주소는 “인천광역시 남구 도화동 597-126”이다. 이를 지리좌표(XY좌표)로 변환하면 X좌표는 37.4626540, Y좌표는 126.6667550가 된다. 이 좌표정보를 이용하여 수봉도서관의 위치를 표시하면 그림 71과 같다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_71.png">
+                    그림71. 좌표정보로부터 표현된 수봉도서관의 위치
+                </div>
+
+                수봉도서관뿐만 아니라 인천광역시도서관협회에서 운영하는 다른 도서관들을 앞서 언급한 과정을 통해서 지오코딩할 수 있다. 그러나 모든 도서관 회원들을 지오코딩하기는 쉽지 않다. 이러한 경우에는 Geocoder-Xr을 활용하면 간단히 지오코딩할 수 있다. 
+
+                ** 다운로드 위치: <a href="http://www.gisdeveloper.co.kr/947 ">http://www.gisdeveloper.co.kr/947</a>
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_72.png">
+                    그림72. Geocoder-Xr 초기 입력화면
+                </div>
+
+                상기 프로그램을 활용하면 각 주소의 XY좌표값은 물론, WGS84좌표계를 이용하여 작성된 shape파일을 생성해준다. 따라서 XY좌표값을 포함하는 엑셀파일을 ArcMap에 불러들여서 매핑한 후에 이를 물리적인 작업을 하기 위해서 내보내기 작업을 실시해야하는 복잡한 과정을 거치지 않아도 된다는 장점을 가지고 있다. 또한 좌표값으로 변환되지 않은 주소정보를 따로 저장하여 보여준다는 점에서 변환되지 않은 이유를 찾아 수정한 후에 재변환할 수 있다는 장점도 가지고 있다. 
+                그림 73은 인천광역시도서관협회 소속 도서관의 이용자들의 지리적인 위치를 보여주고 있다. 지도에서 알 수 있듯이, 도서관 이용자는 인천광역시민뿐만 아니라 수가 많지는 않지만 전국적으로 분포해 있다는 점을 알 수 있다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_73.png">
+                    그림73. 인천시도서관협회 도서관 이용자 분포도
+                </div>
+
+                </div>
+                <div id="ref_3_2_4">
+                <h3>3.2.4 좌표계 변환(Projection transformation)</h3>
+                GIS를 활용하기 위한 전처리 단계의 하나로 좌표계 변환과정이 요구된다. 두 개 이상의 레이어를 활용하여 지리정보를 분석하는 GIS는 레이어 간의 서로 다른 좌표계를 사용하는 경우가 발생할 수 있다. 이러한 경우에는 좌표계 변환을 통해 동일한 좌표계로 만들어 준 다음에 분석을 실시해야 한다. 앞서 언급했듯이, 기본 지도인 통계지리정보서비스에서 제공하는 지도의 좌표계는 TM 중부원점(Bessel타원체)를 사용하는 반면에 지오코딩 과정을 통해 생성된 지도의 좌표계는 WGS84좌표계를 사용한다는 점에서 두 지도의 좌표계를 하나로 통일할 필요가 있다. 본 매뉴얼에서는 WGS84좌표계를 기본지도에 맞게 TM중부원점 좌표계로 변환하여 사용하였다. 
+                좌표계의 변환방법은 다양한 방법이 있지만 간단하게 ㈜지오서비스에서 개발한 XrProjection을 이용하면 간단하게 변환할 수 있다. 그림 74는 좌표계 변환을 위한 프로그램 화면과 방법을 간략히 보여주고 있다. 
+
+                **XrProjection 다운로드: <a href="http://www.gisdeveloper.co.kr/898">http://www.gisdeveloper.co.kr/898</a>
+
+                ① XrProjection을 다운로드하여 설치한다.
+                ② “단일 SHP파일 변환”탭을 선택한 후, 변환하고자 하는 SHP 파일과 좌표계를 선택한다. 
+                ③ 변환결과가 저장될 위치와 이름과 좌표계를 지정한 후에 “변환”을 클릭한다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_74.png">
+                    그림74. XrProjection을 이용한 좌표변환
+                </div>
+
+                </div>
+                <div id="ref_3_3">
+                <h2>3.3 GIS를 활용한 분석</h2>
+                </div>
+                <div id="ref_3_3_1">
+                <h3>3.3.1 이용자 분포도</h3>
+                정의
+                특정 지역에 분포되어 있는 도서관과 그 이용자의 분포의 형태를 의미한다. 
+
+                산출방법
+                앞서 기술한 지오코딩 과정을 통해서 도서관과 이용자의 좌표정보를 파악할 수 있다. 
+                ① File > Add Data > Add Data 클릭한 후, 도서관 지오코딩 결과 SHP 파일을 “Add”한다.
+                ② 경고메시지에 대해서는 “OK”를 클릭한다.
+                ③ 기본 경계지도에 대해서도 동일한 방법으로 추가한다.
+                ④ 그림 75는 인천광역시 공공도서관의 위치를 보여주고 있다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_75.png">
+                    그림75. 인천광역시 도서관 분포도
+                </div>
+
+                결과의 해석 및 의미
+                도서관의 위치에 대한 분포도는 주변에 어떠한 도서관이 있는지를 보여준다. 인천광역시 공공도서관의 경우, 운영의 주체가 지방자치단체와 교육청으로 나누어져 있고 운영방식에 있어서도 직영과 위탁으로 운영되고 있다. 새로운 도서관에 대한 건립이나 기존 도서관의 이전 계획을 세울 때는 인천광역시 전체의 도서관 시스템을 고려해야 한다는 점에서 전체 도서관의 분포도는 의미가 있다. 
+                </div>
+                <div id="ref_3_3_2">
+                <h3>3.3.2 도서관 봉사대상지역 설정</h3>
+                정의
+                도서관 봉사대상지역의 설정은 지역사회분석을 위한 첫 번째 단계라 할 수 있다. 지역사회분석에서 지역사회는 곧 도서관의 봉사대상지역을 의미하기 때문이다. 특정 도서관의 지역사회가 어디인지는 봉사대상지역이 어디인가와 같은 물음일 것이다. 따라서 봉사대상지역을 어떻게 설정하느냐는 지역사회를 결정한다는 점에서 도서관 계획에서 매우 중요하게 고려되어야 한다. 일반적으로 도서관의 봉사대상지역은 ‘구’나 ‘시’가 그 봉사대상지역으로 설정되었다. 그러나 도서관 이용자의 등록정보를 살펴보면 대부분이 도서관 주변에 위치하는 것을 확인할 수 있다. 이러한 점은 도서관 이용자는 집에서 가까운 도서관을 이용한다는 점을 알 수 있다. 이는 도서관 봉사대상지역은 거리로부터 설정될 수 있다는 점을 나타내고 있다. 
+
+                설정방법
+                봉사대상지역의 선정은 가장 가까운 거리에 위치한 도서관을 이용한다는 특징을 반영하여 도서관간의 거리로 계산되었다. GIS 소프트웨어에서 Thiessen 혹은 Voronoi polygon 기능을 이용하여 봉사대상지역을 설정할 수 있다. 
+
+                (1) Thiessen 폴리곤 생성
+                ① ArcToolbox > Analysis Tools > Proximity > Create Thiessen Polygons
+                ② Input Features에 도서관의 위치에 대한 SHP 파일을 선택한다. 콤보박스를 누르면 현재 ArcMap에 추가된 지도들로부터 선택이 가능하다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_76.png">
+                    그림76. 도서관 봉사대상지역 설정방법-1
+                </div>
+
+                ③ “OK”를 클릭하면 아래와 같은 지도가 생성이 된다. 그림 77은 Thiessen 폴리곤을 통한 49개 공공도서관의 인천광역시 지역분할의 일부를 보여주고 있다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_77.png">
+                    그림77. 도서관 봉사대상지역 설정방법-2
+                </div>
+
+                2) 행정구역 내 봉사대상지역 설정
+                인천광역시로 봉사대상지역을 제한하여 설정하고자 할 때는 Thiessen 폴리곤을 통해 생성된 영역을 인천광역시 경계지도와 교집합 부분을 찾는다.
+                ① Analysis Tools > Overlay > Intersect를 클릭한다.
+                ② 교집합을 구하고자 하는 두 개의 지도를 선택한 후, “OK”를 클릭한다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_78.png">
+                    그림78. Intersect 기능
+                </div>
+
+                ③ 아래 그림 79는 설정된 봉사대상지역을 도서관별로 다른 색을 사용하여 구분한 것이다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_79.png">
+                    그림79. 인천광역시 49개 도서관 봉사대상지역
+                </div>
+
+                ④ 색상을 통한 값의 구분은 먼저, 서비스 대상지역에 대한 지도를 선택한 후에 마우스 오른쪽 버튼을 클릭하면 “Properties...”메뉴를 확인할 수 있다. 
+                ⑤ 다음과 같은 레이어 속성창이 나타나고 “Symbology”텝이 선택되어 보여 진다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_80.png">
+                    그림80. 봉사대상지역 색상구분법-1
+                </div>
+
+                ⑥ 왼쪽 창의 “Show”항목 아래의 “Categories”를 선택하면 아래와 같은 창으로 바뀐다. 이때 “Value Field”에 봉사대상지역을 구분하는 값을 넣고, “Color Ramp”에서 적절한 색변화를 선택한 후, 하단의 “Add All Values”를 클릭한다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_81.png">
+                    그림81. 봉사대상지역 색상구분법-2
+                </div>
+
+                (3) 집계구를 이용한 봉사대상지역 설정
+                ① 집계구 경계지도를 추가한다.
+                ② Thiessen 폴리곤의 영역안에 포함되어 있는 집계구를 모두 선택한다. 
+                ③ 율목도서관의 Thiessen 폴리곤을 하나의 레이어로 만들기 위해서는, 먼저 Thiessen 폴리곤 서비스 영역의 레이어를 선택한 후에 메뉴바의 “Select Features(<img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_82.png">)” 기능을 이용하여 율목의 영역만을 선택한다.
+                ④ 아래 그림 83과 같이 전체도서관의 Thiessen 폴리곤 레이어에서 마우스 오른쪽 버튼을 클릭하여 “Selection > Create Layer From Selected Features”를 클릭한다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_83.png">
+                    그림83. 선택된 속성값으로부터 레이어생성
+                </div>
+
+                ⑤ 레이어 상단에 새로운 율목 Thiessen 폴리곤 영역만 추출된 레이어가 추가된 것을 확인할 수 있다. 
+                ⑥ 추출된 율목 Thiessen 폴리곤과 집계구 영역을 중첩하여 폴리곤을 포함한 집계구 영역을 추출하기 위해 Selection > Select By Location 기능을 이용한다. 
+                ⑦ 아래와 같이 집계구를 Tagret layer로 선택하고 Source Layer 항목에 추출된 율목 Thiessen 폴리곤을 선택하고 OK를 클릭한다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_84.png">
+                    그림84. Thiessen 폴리곤에 해당하는 집계구 선택-1
+                </div>
+
+                ⑧ 선택된 집계구 중에 제외하거나 추가하고자 하는 집계구가 있다면 메뉴바의 “Select Features(<img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_85.png">)” 기능을 선택한 후에 Shift 키를 누른 채 해당 집계구를 클릭한다. 
+                ⑨ 선택된 집계구를 하나의 레이어로 만들기 위해서는 ④에 했던 방식을 따른다. 
+                ⑩ 아래 그림 86은 율목도서관의 봉사대상지역에 해당하는 집계구를 나타낸다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_86.png">
+                    그림86. Thiessen 폴리곤에 해당하는 집계구 선택-2 
+                </div>
+
+                위의 방법을 적용하여 수봉과 율목도서관 주변 공공도서관의 봉사대상지역을 설정하면 그림 87과 같다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_87.png">
+                    그림87. 집계구를 이용한 5개 공공도서관 봉사대상지역
+                </div>
+
+                결과해석 및 의미
+                지역사회분석에서 첫 번째 단계는 지역사회의 범위에 대한 정의이다. 어디까지가 분석의 대상이 되는 지역사회인가에 대한 설정이 있어야 다음 단계의 데이터 수집과 분석이 가능한 것이다. 여기에서 지역사회는 도서관에서는 봉사대상지역에 해당한다. 따라서 도서관 계획에서 봉사대상지역에 대한 설정은 첫 번째 단계라 할 수 있다. 
+                만일 인천광역시에 도서관이 하나라면 봉사대상지역은 인천광역시가 된다는 점에서 설정방법이 용이하다. 그러나 49개 도서관이 서비스하고 있는 상황에서 어떻게 봉사대상지역을 설정할 것인가는 쉽지 않은 문제가 된다. 본 매뉴얼에서는 이용자의 이동거리를 바탕으로 봉사대상지역을 설정하였고 이후 인구주택총조사 자료의 집계구 정보를 활용하여 봉사대상지역을 구체화했다. 
+
+                <div class="descript-block">
+                    봉사대상지역의 인구통계학적 특성 살펴보기
+
+                    봉사대상지역의 인구수와 성별 등의 인구통계정보를 확인하기 위해서는 통계청에서 제공하는 인구주택총조사 자료를 이용해야 한다. 본 매뉴얼에서는 도서관 내부데이터를 이용한 분석이라는 점에서 인구주택총조사 자료를 포함하고 있지는 않다. 확인을 원한다면 2013년부터 운영중인 도서관건립계획 지원 시스템(<a href="http://lib-bldg.clip.go.kr/html/index.asp">http://lib-bldg.clip.go.kr/html/index.asp</a>)을 활용할 수 있다. 아래 그림 88은 율목도서관 반경 2km의 봉사영역과 그 인구통계적 특성을 보여주고 있다. 시스템은 “사용자 임의 영역 설정”기능을 통해 사용자가 직접 봉사대상지역을 지도에 표시하고 인구통계결과 값을 볼 수 있도록 하고 있다. 
+
+                    <div class="descript-img">
+                        <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_88.png">
+                        그림88. 도서관건립계획 지원 시스템을 이용한 봉사대상지역
+                    </div>
+
+                    <div class="descript-img">
+                        <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_89.png">
+                        그림89. 도서관건립계획 지원 시스템을 이용한 봉사대상지역의 인구통계
+                    </div>
+
+                    율목도서관의 연령별 통계와 도서관건립계획 지원 시스템으로부터 추출된 봉사대상지역의 인구통계정보를 정리비교하면 표 20과 같다. 전체 봉사대상인구수는 34,219명으로 추산되며 현재 율목도서관에 등록된 이용자수는 6,387명이다. 각 연령대별로 이용자의 비율을 계산해보면 20대의 경우 전체 4,359명의 거주자 중에서 1,216명(27.9%)으로 다른 연령대와 비교했을 때 가장 높은 이용자 등록률을 보였다. 그러나 40대 이상에서는 상대적으로 낮은 도서관 이용자 등록률을 보이는데 특히 60대 이상의 이용자 중에서 3.9%만이 등록한 것으로 나타났다. 이는 도서관에서 새로운 이용자층으로 60대 이상의 노년층의 참여율을 높일 수 있는 독서문화 프로그램이나 서비스의 개발이 필요함을 보여주고 있다고 할 수 있다.  
+
+                    <div class="descript-table">
+                        <table>
+                            <tr>
+                                <td>연령</td>
+                                <td>전체인구</td>
+                                <td>이용자수</td>
+                                <td>이용자비율(%)</td>
+                            </tr>
+                            <tr>
+                                <td>10세 미만</td>
+                                <td>3,426</td>
+                                <td>937</td>
+                                <td>27.3</td>
+                            </tr>
+                            <tr>
+                                <td>10대</td>
+                                <td>4,917</td>
+                                <td>1,146</td>
+                                <td>23.3</td>
+                            </tr>
+                            <tr>
+                                <td>20대</td>
+                                <td>4,359</td>
+                                <td>1,216</td>
+                                <td>27.9</td>
+                            </tr>
+                            <tr>
+                                <td>30대</td>
+                                <td>5,458</td>
+                                <td>1,305</td>
+                                <td>23.9</td>
+                            </tr>
+                            <tr>
+                                <td>40대</td>
+                                <td>6,319</td>
+                                <td>1,090</td>
+                                <td>17.2</td>
+                            </tr>
+                            <tr>
+                                <td>50대</td>
+                                <td>4,802</td>
+                                <td>437</td>
+                                <td>9.1</td>
+                            </tr>
+                            <tr>
+                                <td>60대 이상</td>
+                                <td>4,938</td>
+                                <td>195</td>
+                                <td>3.9</td>
+                            </tr>
+                            <tr>
+                                <td>전체</td>
+                                <td>34,219</td>
+                                <td>6,387</td>
+                                <td>18.7</td>
+                            </tr>
+                        </table>
+                        <div>표-20. 율목도서관 봉사대상지역의 인구분포</div>
+                    </div>
+
+                    건립계획지원시스템의 경우에는 이용자가 임의로 봉사대상지역을 설정할 수 있다는 장점이 있지만 부정확한 설정의 문제점을 가지고 있다. 또한 행정동의 일부가 봉사대상지역에 포함되어 있다면 전체 동에서 포함된 면적의 비율만큼을 전체인구에서 비율로 하여 봉사대상 인구가 산출된다는 점에서 수치의 정확성에 문제가 있다. 따라서 통계청에서 제공하는 집계구 기반의 인구통계를 활용하여 봉사대상지역의 인구를 산정하는 것이 바람직하다. 본 매뉴얼의 범위가 도서관 내부데이터에 제한된다는 점에서 외부데이터인 센서스 정정보를 활용한 분석을 포함하고 있지 않다. 
+                </div>
+                </div>
+
+                <div>
+                <h3>3.3.3 이용자의 이동거리 측정</h3>
+
+                정의
+                앞서 언급했듯이, 이동거리는 이용할 도서관의 선택에 있어서 중요한 요소로 작용을 한다. 일반적으로 거리는 특정 두 지점이 떨어져있는 정도를 의미하는데 도서관 이용자의 이동거리에서 한 점은 도서관에 해당한다. 다른 한 점이 어디가 되어야 하는가는 연구의 목적에 따라 달라지겠지만 본 매뉴얼에서는 이용자의 집으로 설정하였다. 이용자가 주로 직장에서 돌아오는 길에 도서관에 들른다고 할지라도 본 매뉴얼에서는 이용자의 집에서 도서관까지의 거리로 측정하였다. 거리 측정에 있어서도 유클리디안 거리측정법을 사용하여 두 지점간의 직선거리 측정법을 사용하였다. 
+
+                측정방법
+                두 지점간의 거리를 측정하기 위해서는 각 지점에 대한 레이어가 ArcMap에 추가되어야 한다. 이후 다음과 같은 순서로 진행한다.  
+
+                (1) 거리측정하기 
+                ① ArcToolbox > Analysis Tools > Proximity > Point Distance 선택한다.
+                ② 아래 그림 90에서 Input Features 항목에 도서관 SHP파일을 선택하고 Near Features 항목에 해당 도서
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_90.png">
+                    그림90. 도서관과 이용자의 거리 측정 방법-1
+                </div>
+
+                ④ 결과는 데이터베이스에 테이블의 형태로 포함된다.
+
+                (2) 측정된 거리에 대한 요약통계 보기
+                ① ArcToolbox > Analysis Tools > Statistics > Summary Statistics
+                ② Input Table 항목에 위의 과정을 통해 생성된 테이블을 선택한다.
+                ③ Statistics Field(s) 항목에서 Distance를 선택하면 아래에 “Distance”가 추가된다.
+                ④ 9 개의 Statistics Type 중에서 하나를 선택한다. 만일 다수의 통계를 보고자 한다면 ③과 ④ 과정을 반복한다. 
+                ⑤ OK를 클릭한다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_91.png">
+                    그림91. 측정거리 요약통계 보기-1
+                </div>
+
+                ⑥ 결과는 테이블의 형태로 저장이 되고 이를 확인하기 위해서는 테이블 항목에서 마우스의 오른쪽 버튼을 클릭한다.
+                ⑦ 아래 그림 92와 같은 메뉴에서 Open을 선택한다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_92.png">
+                    그림92. 측정거리 요약통계 보기-2
+                </div>
+
+                ⑧ 그림 93은 결과의 일부를 보여준다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_93.png">
+                    그림93. 측정거리 요약통계
+                </div>
+
+                3) 이용자 데이터와 측정된 거리의 결합
+                측정된 거리정보는 다른 테이블과 결합하여 활용될 수 있다. 결합의 방법은 Join을 이용한다.
+                ① 결합하고자 하는 레이어를 선택한 후, 마우스 오른쪽 버튼을 클릭하여 “Joins and Relates > Join”을 선택한다. 
+                ② 아래의 그림 94와 같은 창이 나타나면, 결합의 방법으로 “Join attributes from a table”을 선택하고 결합될 두 테이블에서 동일한 항목을 각각 1과 3항목에서 선택한다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_94.png">
+                    그림94. Join을 통한 두 테이블의 결합
+                </div>
+
+                ③ OK를 클릭한다.
+                ④ 레이어에서 Open 메뉴를 통해 Join 결합의 결과를 확인할 수 있다. 
+
+                (4) RFM 그룹별 이용자의 위치확인
+                ① Layers 창에서 해당 지도를 선택한다. (예: 율목도서관 이용자)
+                ② 각 그룹별 이용자들을 추출하기 위해서 Selection > Select By Attributes를 클릭하면 다음과 같은 창이 나타난다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_95.png">
+                    그림95. RFM 그룹별 이용자 위치확인방법
+                </div>
+
+                ③ 변수들이 나열된 창에서 RFM 값에 해당하는 변수(예에서는 RFM_score)를 찾아 더블클릭한다. 아래 수식창에 변수가 추가된 것을 확인할 수 있다. 
+                ④ 355집단을 먼저 선택하기 위해서 “RFM_score”=355형식으로 입력한 후, 수식이 바르게 입력되었는지 확인하기 위해 “Verify”를 클릭한다. “The expression was successfully verified”라는 메시지가 나타나면 올바른 입력이다. 만약 “There was an error expression”이라는 메시지가 나타나면 수식에서 올바르지 않은 부분을 수정한 후 다시 Verify해야한다.
+                ⑤ OK를 클릭하면 355그룹에 해당하는 이용자들이 선택된다. 위의 방법으로 211, 233, 255 그룹을 선택하면 각각 그림 96, 97, 98과 같다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_96.png">
+                    그림96. 율목도서관 211그룹
+                </div>
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_97.png">
+                    그림97. 율목도서관 233그룹
+                </div>
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_98.png">
+                    그림98. 율목도서관 255그룹
+                </div>
+
+                <div class="descript-block">
+                    도서관 이용과 거리와의 관계
+                    ① 앞서 거리와 이용자프로파일을 조인한 파일을 통계페키지 중의 하나인 SPSS에서 연다. 조인한 SHP파일은 동일한 파일명의 dBase 파일(.dbf)을 가지고 있다. 따라서 SPSS에서 파일을 열 때 파일 형식에서 “dBase(*.dbf)”를 선택한 후, 해당파일을 연다.
+                    ② RFM을 이용한 시장세분화에서 R, F, M 각 요소를 몇 개의 범주로 구분했는지에 따라 다르겠지만 일반적으로 5개의 그룹으로 나눈다면 총 125개의 범주가 만들어진다. 이러한 경우 모든 범주들 간의 거리 평균을 비교한다는 것은 어렵다. 따라서 도서관 이용률과 거리의 관계를 보기 위해서는 의미있는 집단만을 선택하여 비교한다. 
+                    ③ 본 매뉴얼에서는 R을 3개의 그룹으로 나누었고 나머지 두 요소를 5개의 그룹으로 나누었기 때문에 211, 233, 255그룹을 분석대상으로 선택하였다. 선택을 위해서 “Data > Select Cases...”를 클릭하면 다음 그림 99와 같은 창이 나타난다.
+
+                    <div class="descript-img">
+                        <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_99.png">
+                        그림99. 도서관 이용과 거리의 관계측정-1
+                    </div>
+
+                    ④ “Select”의 두 번째 항목인 “If condition is satisfied”에서 “If...”를 선택한 후, 그림 100과 같은 화면의 수식창에 “RFM_score=211 or RFM_score=233 or RFM_score=255”를 입력하고 “Continue”를 클릭한다. 
+
+                    <div class="descript-img">
+                        <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_100.png">
+                        그림100. 도서관 이용과 거리의 관계측정-2
+                    </div>
+
+                    ⑤ 분산분석을 위해서 “Analyze > Compare Means > One-Way ANOVA...”를 클릭하면 그림 101과 같은 창이 나타난다.
+
+                    <div class="descript-img">
+                        <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_101.png">
+                        그림101. 도서관 이용과 거리의 관계측정-3
+                    </div>
+
+                    ⑥ Dependent List 항목에 계산된 거리변수를 옮겨놓고 Factor 항목에 RFM score변수를 옮겨놓고 OK를 클릭한다.
+                    ⑦ 그림 102와 같은 결과를 얻을 수 있다. 
+
+                    <div class="descript-img">
+                        <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_102.png">
+                        그림102.  도서관 이용과 거리의 관계측정-4
+                    </div>
+
+                    ⑧ ANOVA분석과 관련된 여러 가지 관련﹀통계를 보기 위해서는 통계﹀관련 책을 참조한다. 
+
+                </div>
+
+                측정결과의 해석 및 의미
+                거리와 도서관 이용과의 관계에 대한 통계적 분석결과와 위치분석결과는 관계가 없음을 보여주고 있다. 물론, 255그룹이 도서관 근처에 있는 것으로 보아 거리가 가까울수록 더 많은 도서관 이용이 이루어진다고 말할 수 있다. 그러나 이용률이 저조한 211그룹의 상당수의 이용자들도 도서관 근처에 거주하는 것으로 보아 이용률과 거리는 강한 관련성이 있는 것은 아닌 것으로 나타났다. 오히려 이용자의 도서관 이용경험이나 선호도 등의 개인적인 특성이 이용률에 영향을 미치는 것으로 생각된다. 따라서 어떠한 요인이 이용률에 영향을 미치는지에 대한 연구는 이용자들을 대상으로 직접 조사하는 것이 바람직할 것이다. 이용자 연구를 통해 이용률에 영향을 미치는 요인을 분석해낸다면 공공도서관 이용률 향상에 기여할 것으로 기대된다.
+                </div>
+                <div id="#ref_3_3_4">
+                정의
+                선택된 지리정보(점, 선, 면 등)로부터 일정거리의 영역을 버퍼라 한다. 버퍼는 직선거리를 바탕으로 설정된다. 
+
+                측정방법
+                한 도서관으로부터 버퍼를 생성하여 분석하는 방법은 다음과 같다.
+
+                  (1) 복수의 거리를 적용한 버퍼 생성하기
+                ① ArcToolbox > Analysis Tools > Proximity > Multiple Ring Buffer를 클릭한다. 하나의 버퍼만을 생성하고자 한다면 Proximity > Buffer를 이용한다.
+                ② 아래 그림 103과 같은 창이 나타나면, Input Features 항목에서 도서관을 선택하고 Distances 항목에서 생성하고자 하는 버퍼의 간격을 입력하고 “+”버튼을 클릭하여 추가한다.  
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_103.png">
+                    그림103. 복수의 버퍼만들기-1
+                </div>
+
+                ③ OK를 클릭하면 다음과 같은 결과를 얻을 수 있다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_104.png">
+                    그림104. 500m 간격의 버퍼 (율목도서관)
+                </div>
+
+                (2) 버퍼에 포함된 이용자 수 측정 
+                각각 생성된 버퍼에 몇 명의 이용자가 포함되어 있는지를 측정하기 위해서 앞서 설명한 Join 결합을 통해 알 수 있다. 
+                ① 아래 그림 105와 같은 Join 창에서 결합의 방법으로 “Join data from another layer based on spatial location”을 선택한다. 
+                ② 결합될 항목으로 율목도서관의 이용자 레이어를 선택한다. 
+                ③ 각 버퍼에 포함된 이용자 레이어에 포함된 속성값들의 평균, 최대값, 최소값 등을 구하고자 한다면 해당 값을 체크한다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_105.png">
+                    그림105. 버퍼에 포함된 이용자 수 측정
+                </div>
+
+                ④ OK를 클릭한다.
+                ⑤ 버퍼 레이어의 속성을 Open하면 다음과 같은 결과화면을 볼 수 있다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_106.png">
+                    그림106. 버퍼에 포함된 율목도서관 이용자 수 결과
+                </div>
+
+                (3) 그래프 그리기 
+                생성된 버퍼와 각 버퍼에 포함된 이용자 수를 이용하여 그래프를 그릴 수 있다. 
+                ① “Open Attribute Table”을 이용하여 버퍼의 속성 테이블을 연다. 
+                ② Table Options에서 “Create Graph...”를 선택한다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_107.png">
+                    그림107. 그래프 그리기-1
+                </div>
+
+                ③ 아래 그림 108과 같이 각 항목들의 값을 설정한다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_108.png">
+                    그림108. 그래프 그리기-2
+                </div>
+
+                ④ Next를 클릭하고 다음 창에서 Finish를 클릭하면 다음과 같은 결과를 얻는다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_109.png">
+                    그림109. 500m 간격버퍼에 포함된 율목도서관 이용자 수 그래프
+                </div>
+
+                결과해석 및 의미
+                율목도서관에 등록된 이용자 5,457명 중에서 38%인 2,123명은 도서관으로부터 500m 내에 거주한다. 2km 내에 거주하는 인구는 4,043명으로 나타났고 이는 전체의 74%에 해당한다. 전체의 80%는 도서관으로부터 4km내에 거주하는 것으로 나타났다. 인천광역시가 대도시라는 점과 주변에 가장 가까운 도서관인 화도진 도서관까지의 거리가 1.5km라는 점에서 대부분의 이용자들이 도서관 주변에 거주하는 것으로 보인다. 
+
+                </div>
+                <div id="#ref_3_3_5">
+                <h3>3.3.5 밀집도(Density)분석</h3>
+                정의
+                점이나 선, 면으로 이루어진 지리정보가 한 지역에 얼마나 밀집해있는 지를 나타내는 척도로 사용되는 밀집도는 한 지역에서 발생하는 사건의 횟수와 그 정도를 의미한다. 도서관 관련하여 도서관 이용을 하나의 사건으로 한다면 어느 지역에서 도서관 이용이 가장 많았는지를 밀집도 분석을 통해 알 수 있다. 또한 동일한 특징을 공유하는 집단들이 어디에 가장 밀집해 있는지를 확인 할 수 있다. 
+
+                측정방법
+                밀집도를 분석하기 위해서는 다양한 방법들이 있지만 본 매뉴얼에서는 커널 밀도 분석(Kernel Density Analysis)을 실시하였다. 커널 밀도 분석은 가우시안 커널밀도함수를 이용하여 특정 격자로부터 일정한 대역폭에 포함된 점들을 통해 밀도를 측정한다. 예제로 연체자들이 밀집해있는 지역을 파악하는 커널밀집도 분석을 다음과 같이 실시하였다. 
+
+                ① Spatial Analyst Tools > Density > Kernel Density를 실행하면 다음과 같은 화면이 나타난다.
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_110.png">
+                    그림110. 커널 밀집도 분석방법
+                </div>
+
+                ② 위 화면에서 “Input point or polyline features” 항목에서 커널밀도함수를 적용하고자 하는 점 분포도, 즉 연체자 정보를 담고 있는 레이어를 선택한다.
+                ③ “Population field”는 격자 안의 점 개체의 수를 나타내는 것으로 특정 현상이 가중치로 사용가능하다. 
+                ④ “Output raster”는 레스터 파일로 결과물이 저장되고 그 경로와 파일이름을 의미한다. 
+                ⑤ “Output cell size”는 생성된 커널밀도의 격자 크기를 말하여 작은 숫자는 작은 격자를 만들어 좀더 세밀한 밀도를 보여준다. 
+                ⑥ “Search radius”는 대역폭을 의미하며 대역폭의 값이 크면 밀도분포가 크게 나타나고 대역폭이 작으면 지역적인 군집을 볼 수 있다. 본 매뉴얼에서는 격자 크기를 50으로 대역폭을 500으로 설정하였다. 결과는 그림 111과 같다. 
+
+                <div class="descript-img">
+                    <img border="0" src="${pageContext.request.contextPath}/assets/img/reference/pic_111.png">
+                    그림111. 연체자의 커널밀집도 분석결과
+                </div>
+
+                결과해석 및 의미
+                위 그림 109에서 도서 연체자들의 위치는 도서관 주변으로 나타난다. 이러한 분포는 전체 이용자들의 분포와 유사하게 나타난다. 이는 도서관으로부터 거리가 멀어지면 연체율이 증가하기 보다는 연체자의 개인적인 특성이나 대출된 장서의 특성에 기인한 것으로 보인다. 액세스를 이용한 데이터 분석결과에서도 연체되는 도서가 대부분 소설이라는 점은 이를 잘 설명해주고 있다고 할 수 있다. 따라서 도서관에서는 연체가 자주 발생하는 책에 대해서는 대출 시 이용자에게 정해진 날짜에 반납하기를 권유할 필요가 있다. 또한 반복적으로 연체되는 도서의 경우에는 이용자의 편의를 위해서 복본에 대한 구입을 고려해야 할 것이다. 
+
+                </div>
+
+                <div id="ref_4">
+                <h1>끝맺으며</h1>
+                본 매뉴얼은 도서관에서 보유하고 있는 데이터를 분석하여 도서관 의사결정에 도움이 되는 정보를 추출하는 방법에 대해 다루고 있다. 도서관 데이터로 장서데이터, 이용자 프로파일, 대출기록을 활용하였으며 추가적으로 독서문화프로그램 참여 데이터를 분석하였다. 일차적으로 데이터 자체로부터 정보를 추출하기 위해서 액세스와 엑셀을 활용하여 분석을 진행하였고 추가적으로 지리정보시스템을 이용하여 도서관과 도서관 이용자에 대한 지리적인 분석을 수행하였다. 분석을 위해 사용될 지표를 설정하고 지표를 측정하기 위한 방법에 대해서 매뉴얼 이용자들이 쉽게 따라 할 수 있도록 step-by-step 가이드라인을 제시하였다. 또한 결과물이 의미하는 바를 기술함으로써 활용방법을 제안했다.   
+                본 매뉴얼을 활용하여 도서관 데이터로부터 매뉴얼에 제시된 지표 이외에 추가적으로 보다 더 다양한 정보를 추출할 수 있을 것으로 기대된다. 이러한 정보를 활용하여 도서관 사서들은 장서개발의 방향을 설정하거나 장서개발정책서 마련을 위한 기본적인 정보를 얻을 수 있을 것이다. 도서관의 장서는 도서관을 구성하는 중요한 요소 중의 하나로 장서구성이 도서관의 특징을 보여준다고 점에서 장서개발은 도서관의 중요업무라 할 수 있다. 따라서 본 매뉴얼을 통해 현재 장서 수준과 이용자의 장서이용 행태를 분석할 수 있고 분석결과를 이용하여 장서를 개발하기 위한 방향을 설정할 수 있다. 덧붙여, 이용되지 않는 장서나 이용자별 이용장서를 파악함으로써 도서관 사서의 장서이용 마케팅 방안을 마련하는데 도움을 줄 것이다. 
+                장서개발 측면에서의 활용이외에도 분석결과는 도서관의 성과를 홍보하는 자료로 활용될 수 있다. 도서관은 매년 예산을 통해 운영되고 예산이 어떻게 사용되었고 어떤 성과를 만들고 있는지를 보여줄 필요가 있다. 이를 통해 도서관의 필요성과 도서관 운영의 주체로써 사서 역할의 중요성을 알릴 수 있을 것이다. 또한 예산 배정기관에 그 성과를 보여줌으로써 계속적인 지원의 합리성을 피력할 수 있는 자료로 활용될 수 있을 것이다. 
+                또한 사서가 도서관 이용자에 대한 데이터나 독서문화프로그램과 관련한 데이터의 수집 범위를 설정하는데 도움을 줄 수 있다. 개인정보보호법이 강화되고 있음에도 불구하고 이용자 정보는 깊이 있는 데이터 분석을 가능하게 한다는 점에서 포괄적인 수집이 요구된다. 그러나 그 수집의 수준을 설정하는 것은 쉬운 일이 아니다. 따라서 본 매뉴얼은 어느 정도 수준까지 이용자 정보를 수집하는 것이 옳은지에 대해 파악할 수 있는 기회를 제공해 줄 것이다. 또한 독서문화프로그램을 진행한 후 어떠한 정보를 이용자들로부터 수집해야하는지, 그리고 프로그램에 대한 어떠한 정보를 추가해서 기록해야하는지에 대한 윤곽을 제시해 줄 것이다. 
+                이러한 매뉴얼의 활용가치에도 불구하고 본 매뉴얼은 도서관 내부에서 획득 가능한 데이터를 활용한 모든 분석을 포함하고 있지 않다는 한계점을 가지고 있다. 장서, 이용자, 대출정보 이외에도 상호대차나 참고질의, 웹사이트 이용정보 등 다양한 정보들을 도서관이 보유하고 있다는 점에서 이들에 대한 분석이 추가되어야 한다. 또한 도서관 내부 데이터를 어떻게 활용할 수 있는지에 대한 많은 연구들이 이미 진행되었다. 따라서 진행된 연구들에서 사용된 지표들을 본 매뉴얼에서 소개된 기법을 통해 측정하고 만일, 해결되지 않는 경우 매뉴얼에 해결을 위한 기법을 자유롭게 추가한다면 매뉴얼의 내용이 풍부해지고 활용도를 더욱 높일 수 있을 것이다. 이러한 점에서 본 매뉴얼은 도서관 내부 데이터 분석을 위한 첫 걸음이 될 것이다. 
+                </div>
+                <div>
+                <h1>참고문헌</h1>
+                서혜란. (2008). 공공도서관 장서관리 실태조사 및 기본장서목록 연구. 국립중앙도서관.
+                이희연, 심재연. (2011). GIS 지리정보학. 경기 파주: 성지사. 
+                정동열, 김성진. (2010). 문헌정보학 이론과 원칙. 서울: 한국도서관협회.
+                Greer, R. C., & Hale, M. (1982). The community analysis process. In J. Robbins-Carter (Ed.), Public librarianship: A reader (pp. 358-366). Littleton,CO: Library Unlimited.  
+                Hawtin, M., & Percy-Smith, J. (2007). Community profiling: A practical guide (2nd ed.). New York, NY: Open University Press.
+                McClure, C., Owen, A., Zweizig, D., Lynch, M., & Van House, N. (1987). Planning & role setting for public libraries. Chicago, IL: American Library Association. 
+                Morris, D., & Hess. K. (1975). Neighborhood power: The new localism. Boston, MA: Beacon.
+                Ottensmann, J. R. (1997). Using geographic information systems to analyze library utilization. Library Quarterly, 67(1), 24-49.
+                </div>
+                <div>
+                <h1>부록 1. 도서관 내부데이터 분석에 대한 연구</h1>
+                박영애 (2010). 지역단위 도서관 시스템에서의 이용중심적 장서평가 연구: 대출 및 상호대차를 기반으로. 박사학위논문, 경기대학교 대학원 문헌정보학과.
+                박영애, 이재윤 (2010). 지역단위 도서관 시스템에서의 이용중심적 장서평가 연구. 한국문헌정보학회지, 44(4), 457-477.
+                박일종. (2008). 이용조사를 통한 공공도서관의 수서정책에 관한 연구-H 도서관 이용자의 2007 년 대출기록을 중심으로. 한국문헌정보학회지, 42(2), 371-392.
+                Adams, B., & Noel, B. (2008). Circulation statistics in the evaluation of collection development. Collection Building, 27(2), 71.
+                Britten, W. A. (1990). A use statistic for collection management: The 80/20 rule revisited. Library Acquisitions: Practice & Theory, 14(2), 183-189.
+                Kim, P. J., Lee, J. Y., & Park, J.-H. (2009). Developing a new collection-evaluation method: Mapping and the user-side h-index. Journal of the American Society for Information Science and Technology, 60(11), 2366&#8211;2377. http://dx.doi.org/10.1002/asi.21159
+                Knievel, J. E., Wicht, H., & Connaway, L. S. (2006). Use of circulation statistics and interlibrary loan data in collection management. College & Research Libraries, 67(1), 35-49.
+                Lawrence, S. R., Connaway, L. S., & Brigham, K. H. (2001). Life cycle costs of library collections: Creation of effective performance and cost metrics for library resources. College & Research Libraries, 62(6), 541-553.
+                </div>
+                <div>
+                <h1>부록 2. 지리정보분석을 위해 사용된 소프트웨어와 데이터 다운로드</h1>
+                한국 ESRI <a href="http://www.esrikr.com/">http://www.esrikr.com/</a>
+                 -> ArcGIS 다운로드 및 도움말 제공
+                지오서비스 <a href="http://www.geoservice.co.kr/">http://www.geoservice.co.kr/</a>
+                 -> DuraMap-Xr등 지리정보분석 컨설팅을 위한 서비스 제공
+                김형준 블로그 <a href="http://www.gisdeveloper.co.kr/">http://www.gisdeveloper.co.kr/</a>
+                 -> Geocoder-Xr, XrProjection 등 다운로드 가능
+                Biz Gis <a href="http://www.biz-gis.com/">http://www.biz-gis.com/</a>
+                 -> ArcGIS 사용법은 물론 다양한 자료와 활발한 커뮤니티 활동
+                통계지리정보서비스 <a href="SGIS http://sgis.kostat.go.kr/">SGIS http://sgis.kostat.go.kr/</a>
                 </div>
             </pre> 
             <!-- /.내용 -->
