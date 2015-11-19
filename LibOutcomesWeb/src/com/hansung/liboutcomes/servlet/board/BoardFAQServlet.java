@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @breif FAQ °Ô½ÃÆÇ ÆäÀÌÁö ¼­ºí¸´
- * @author YuJin
- *
+/*
+ * FAQ ê²Œì‹œíŒ ì„œë¸”ë¦¿
  */
 @WebServlet("/BoardFAQ")
 public class BoardFAQServlet extends HttpServlet {
@@ -22,9 +20,8 @@ public class BoardFAQServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/page/boardFAQ.jsp");
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/BoardFAQ.jsp");
 		dispatcher.forward(req, resp);
 		
 	}
