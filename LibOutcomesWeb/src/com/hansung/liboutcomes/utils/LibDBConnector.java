@@ -1,39 +1,30 @@
 package com.hansung.liboutcomes.utils;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
-import com.mysql.jdbc.Connection;
-
+/*
+ * DB 관련 정보 설정 및 연결
+ */
 public class LibDBConnector {
 	
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/liboutcomes";
 
-	static final String DB_USER = "liboutcomes";
-	static final String DB_PASSWORD = "qkr!tjd@wo#";
+	static final String DB_USER = "root";
+	static final String DB_PASSWORD = "1234";
 	
-	Connection conn = null;
-	
-	public LibDBConnector() {
+	public static Connection getConnection() {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		try {
-			conn = (Connection) DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+			
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 		
 	}
 	
-	public Connection getConnection() {
-		return conn;
-	}
 }

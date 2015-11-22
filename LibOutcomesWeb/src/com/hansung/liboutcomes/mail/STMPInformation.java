@@ -4,10 +4,10 @@ import java.util.Properties;
 
 public class STMPInformation {
 	
-	private Properties p = new Properties(); // Á¤º¸¸¦ ´ãÀ» °´Ã¼
+	private Properties p = new Properties(); // ì •ë³´ë¥¼ ë‹´ì„ ê°ì²´
 	
 	public STMPInformation() {
-		p.put("mail.smtp.host","smtp.naver.com"); // ³×ÀÌ¹ö SMTP
+		p.put("mail.smtp.host","smtp.naver.com"); // ë„¤ì´ë²„ SMTP
 		 
 		p.put("mail.smtp.port", "465");
 		p.put("mail.smtp.starttls.enable", "true");
@@ -16,7 +16,7 @@ public class STMPInformation {
 		p.put("mail.smtp.socketFactory.port", "465");
 		p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		p.put("mail.smtp.socketFactory.fallback", "false");
-		// SMTP ¼­¹ö¿¡ Á¢¼ÓÇÏ±â À§ÇÑ Á¤º¸µé
+		// SMTP ì„œë²„ì— ì ‘ì†í•˜ê¸° ìœ„í•œ ì •ë³´ë“¤
 	}
 
 	public Properties getP() {

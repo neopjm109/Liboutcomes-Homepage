@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @breif °øÁö °Ô½ÃÆÇ ¼­ºí¸´
- * @author YuJin
- *
+/*
+ * ê³µì§€ ê²Œì‹œíŒ ì„œë¸”ë¦¿
  */
 @WebServlet("/BoardNotice")
 public class BoardNoticeServlet extends HttpServlet {
@@ -22,9 +20,8 @@ public class BoardNoticeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/page/boardNotice.jsp");
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/BoardNotice.jsp");
 		dispatcher.forward(req, resp);
 		
 	}

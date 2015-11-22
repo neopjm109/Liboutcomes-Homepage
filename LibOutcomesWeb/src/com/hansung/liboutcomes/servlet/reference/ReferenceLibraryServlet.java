@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @breif µµº≠∞¸ DB º≠∫Ì∏¥
- * @author YuJin
- *
+/*
+ * ÎèÑÏÑúÍ¥Ä DB ÏÑúÎ∏îÎ¶ø
  */
 @WebServlet("/ReferenceLibrary")
 public class ReferenceLibraryServlet extends HttpServlet {
@@ -22,9 +20,8 @@ public class ReferenceLibraryServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/page/referenceLibrary.jsp");
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/reference/ReferenceLibrary.jsp");
 		dispatcher.forward(req, resp);
 		
 	}
